@@ -3,7 +3,7 @@
 This project is divided to two modules:
 * bruteforce - Takes a list of users and passwords, a payload path and host ip, and tries to bruteforce connect an MSSQL server and execute the payload.
 
-*fingerprint - Used for fingerprinting the MSSQL host which uses the SQL Browser service (works only if enabled).
+* fingerprint - Used for fingerprinting the MSSQL host which uses the SQL Browser service (works only if enabled).
 
 Usage is documented in every function of the modules.
 
