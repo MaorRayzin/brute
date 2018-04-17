@@ -5,7 +5,7 @@ service.
 import socket
 import consts
 import logging
-
+import argparse
 from collections import OrderedDict
 
 logging.basicConfig(format='%(asctime)s %(message)s')
@@ -70,15 +70,41 @@ def retrieve_instance_info(host, instance_name=None, buffer_size=consts.BUFFER_S
 
     return results
 
-if __name__ == '__main__':
+
+def main():
+    """
+           If the script is being used as a standalone this will handle it using arguments.
+
+           Args:
+               -h (str): Host IP address
+               -p (str): SQL Browser protocol port
+               -t (str): Timeout for the request
+               -i (str): SQL Instance name if there is one.
+       """
+
+    parser = argparse.ArgumentParser(description=__doc__)
+
+    parser.add_argument('-h', '--host',
+                        help='hostname or IP address of the SQL Server to query for information')
+    parser.add_argument('-p', '--port', default=consts.SQL_BROWSER_DEFAULT_PORT, required=False,
+                        help='SQL Browser Protocol udp port')
+    parser.add_argument('-t', '--timeout', default=consts.TIMEOUT, required=False,
+                        help='Socket timeout')
+    parser.add_argument('-i', '--instance', required=False,
+                        help='Socket timeout')
+
+    arguments = parser.parse_args()
+
     try:
-        info = retrieve_instance_info('192.168.1.9')
+        info = retrieve_instance_info(arguments.host, arguments.instance,
+                                      timeout=arguments.timeout, browser_port=arguments.port)
         for instance_info in info:
             print ('')
 
             for key, value in instance_info.items():
                 print('{0}: {1}'.format(key, value))
     except socket.error as error:
-        print 'Connection to {0} failed: {1}'.format('192.168.1.9', error)
+        print 'Connection to {0} failed: {1}'.format(arguments.host, error)
 
-
+if __name__ == '__main__':
+   main()
