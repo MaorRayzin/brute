@@ -10,6 +10,7 @@ from collections import OrderedDict
 
 logging.basicConfig(format='%(asctime)s %(message)s')
 
+
 def retrieve_instance_info(host, instance_name=None, buffer_size=consts.BUFFER_SIZE, timeout=consts.TIMEOUT,
                            browser_port=consts.SQL_BROWSER_DEFAULT_PORT):
     """Gets Microsoft SQL Server instance information by querying the SQL Browser service.
@@ -30,7 +31,7 @@ def retrieve_instance_info(host, instance_name=None, buffer_size=consts.BUFFER_S
     # Create a UDP socket and sets a timeout
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.settimeout(timeout)
-    server_address = (host, browser_port)
+    server_address = (str(host), browser_port)
 
     if instance_name:
         # The message is a CLNT_UCAST_INST packet to get a single instance
@@ -84,7 +85,7 @@ def main():
 
     parser = argparse.ArgumentParser(description=__doc__)
 
-    parser.add_argument('-h', '--host',
+    parser.add_argument('-H', '--host',
                         help='hostname or IP address of the SQL Server to query for information')
     parser.add_argument('-p', '--port', default=consts.SQL_BROWSER_DEFAULT_PORT, required=False,
                         help='SQL Browser Protocol udp port')
@@ -107,4 +108,4 @@ def main():
         print 'Connection to {0} failed: {1}'.format(arguments.host, error)
 
 if __name__ == '__main__':
-   main()
+    main()

@@ -13,7 +13,7 @@ import consts
 attacks_list = [payload_handling.CmdShellAttack]
 
 
-def mssql_brute_force(host, port, payload, users, passwords, version):
+def mssql_brute_force(host, port, users, passwords, payload, version):
 
     """
     Main function of the mssql brute force, takes arguments
@@ -126,21 +126,22 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description=__doc__)
 
-    parser.add_argument('host',
+    parser.add_argument('-H', '--host',
                         help='hostname or IP address of the SQL Server to query for information')
     parser.add_argument('-p', '--port', default=consts.SQL_DEFAULT_TCP_PORT, required=False,
                         help='SQL tcp port')
     parser.add_argument('-v', '--version', default=None, required=True,
                         help='SQL server version')
-    parser.add_argument('-u', '--users', required=True,
+    parser.add_argument('-u', '--users', nargs='+', required=True,
                         help='A list of user to brute force')
-    parser.add_argument('-pass', '--passwords', required=True,
+    parser.add_argument('-pass', '--passwords', nargs='+', required=True,
                         help='A list of passwords to brute force')
     parser.add_argument('-f', '--payload', required=True,
                         help='A path to the payload (file or dir)')
 
     arguments = parser.parse_args()
 
-    mssql_brute_force(arguments.host, arguments.port, arguments.users, arguments.passwords, arguments.payload)
+    mssql_brute_force(arguments.host, arguments.port, arguments.users, arguments.passwords,
+                      arguments.payload, arguments.version)
 
 
