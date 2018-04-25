@@ -12,22 +12,9 @@ This project is divided to two modules:
   mssql_bruteforce.py [-h] [-H HOST] [-p PORT] -v VERSION -u USERS
                              [USERS ...] -pass PASSWORDS [PASSWORDS ...] -f
                              PAYLOAD
-
-  Main code for the bruteforce module
-
-  optional arguments:
-    -h, --help            show this help message and exit
-    -H HOST, --host HOST  hostname or IP address of the SQL Server to query for
-                          information
-    -p PORT, --port PORT  SQL tcp port
-    -v VERSION, --version VERSION  SQL server version
-    -u USERS [USERS ...], --users USERS [USERS ...]
-                          A list of user to brute force
-    -pass PASSWORDS [PASSWORDS ...], --passwords PASSWORDS [PASSWORDS ...]
-                          A list of passwords to brute force
-    -f PAYLOAD, --payload PAYLOAD
-                          A path to the payload (file or dir)
-                        
+   
+ * Example: 
+   python mssql_bruteforce.py -H  192.168.1.3 -v 1 -u sa admin username user name -pass 123 1234 12345 123456 pass password    -f ./payload.bat
 
 
 
