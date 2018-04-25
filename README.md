@@ -13,7 +13,7 @@ This project is divided to two modules:
 	                         [USERS ...] -pass PASSWORDS [PASSWORDS ...] -f
 	                         PAYLOAD
 
-	Example: 
+	**Example**: 
 		python mssql_bruteforce.py -H  192.168.1.3 -v 1 -u sa admin username user name -pass 123 1234 12345 123456 pass password    -f ./payload.bat
 
 
@@ -21,7 +21,7 @@ This project is divided to two modules:
 		
 	info.py [-h] [-H HOST] Optional: [-p PORT] [-t TIMEOUT] [-i INSTANCE]
 
-	Example:
+	**Example**:
 		python info.py -H 192.168.1.3 
 
 
@@ -35,18 +35,19 @@ Python libs that were used in the project are (sub-libs and dependencies not men
 Resources I've used:
 
 
-* https://www.bobpusateri.com/archive/2010/09/a-look-at-the-sql-server-browser-service/
+1. https://www.bobpusateri.com/archive/2010/09/a-look-at-the-sql-server-browser-service/
 
-* https://s3.amazonaws.com/img.bobpusateri.com/bc/2010/09/CoonleyShark.png
+2. https://s3.amazonaws.com/img.bobpusateri.com/bc/2010/09/CoonleyShark.png
 
-* https://s3.amazonaws.com/img.bobpusateri.com/bc/2010/09/PortQry.jpg
+3. https://s3.amazonaws.com/img.bobpusateri.com/bc/2010/09/PortQry.jpg
 
-* http://www.internationaldatascience.com/wp-content/uploads/2013/09/WiresharkUDP1434Response.png
+4. http://www.internationaldatascience.com/wp-content/uploads/2013/09/WiresharkUDP1434Response.png
 
-* http://infocenter.sybase.com/help/index.jsp?topic=/com.sybase.infocenter.dc36273.1550/html/sprocs/X20958.htm
+5. http://infocenter.sybase.com/help/index.jsp?topic=/com.sybase.infocenter.dc36273.1550/html/sprocs/X20958.htm
 
-* https://www.techinfected.net/2017/07/create-simple-ftp-server-client-in-python.html
+6. https://www.techinfected.net/2017/07/create-simple-ftp-server-client-in-python.html
 
-* https://docs.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/xp-cmdshell-transact-sql?view=sql-server-2017
+7. https://docs.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/xp-cmdshell-transact-sql?view=sql-server-2017
 
-* http://pentestmonkey.net/cheat-sheet/sql-injection/mssql-sql-injection-cheat-sheet
+8. http://pentestmonkey.net/cheat-sheet/sql-injection/mssql-sql-injection-cheat-sheet
+
