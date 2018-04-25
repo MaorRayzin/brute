@@ -5,7 +5,30 @@ This project is divided to two modules:
 
 * fingerprint - Used for fingerprinting the MSSQL host which uses the SQL Browser service (works only if enabled).
 
-Usage is documented in every function of the modules.
+# Usage:
+
+* bruteforce module:
+
+  mssql_bruteforce.py [-h] [-H HOST] [-p PORT] -v VERSION -u USERS
+                             [USERS ...] -pass PASSWORDS [PASSWORDS ...] -f
+                             PAYLOAD
+
+  Main code for the bruteforce module
+
+  optional arguments:
+    -h, --help            show this help message and exit
+    -H HOST, --host HOST  hostname or IP address of the SQL Server to query for
+                          information
+    -p PORT, --port PORT  SQL tcp port
+    -v VERSION, --version VERSION  SQL server version
+    -u USERS [USERS ...], --users USERS [USERS ...]
+                          A list of user to brute force
+    -pass PASSWORDS [PASSWORDS ...], --passwords PASSWORDS [PASSWORDS ...]
+                          A list of passwords to brute force
+    -f PAYLOAD, --payload PAYLOAD
+                          A path to the payload (file or dir)
+                        
+
 
 
 Python libs that were used in the project are (sub-libs and dependencies not mentioned, for full list see requirements.txt):
