@@ -9,19 +9,20 @@ This project is divided to two modules:
 
 * bruteforce module:
 
-  mssql_bruteforce.py [-h] [-H HOST] [-p PORT] -v VERSION -u USERS
-                             [USERS ...] -pass PASSWORDS [PASSWORDS ...] -f
-                             PAYLOAD
-   
-Example: 
-python mssql_bruteforce.py -H  192.168.1.3 -v 1 -u sa admin username user name -pass 123 1234 12345 123456 pass password    -f ./payload.bat
+	mssql_bruteforce.py [-h] [-H HOST] [-p PORT] -v VERSION -u USERS
+	                         [USERS ...] -pass PASSWORDS [PASSWORDS ...] -f
+	                         PAYLOAD
+
+	Example: 
+		python mssql_bruteforce.py -H  192.168.1.3 -v 1 -u sa admin username user name -pass 123 1234 12345 123456 pass password    -f ./payload.bat
 
 
 * fingerprint module:
+		
 	info.py [-h] [-H HOST] Optional: [-p PORT] [-t TIMEOUT] [-i INSTANCE]
 
-Example:
-	python info.py -H 192.168.1.3 
+	Example:
+		python info.py -H 192.168.1.3 
 
 
 # Dependencies and Resources
