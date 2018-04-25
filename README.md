@@ -14,7 +14,7 @@ This project is divided to two modules:
 	                         PAYLOAD
 
 	**Example**: 
-		python mssql_bruteforce.py -H  192.168.1.3 -v 1 -u sa admin username user name -pass 123 1234 12345 123456 pass password    -f ./payload.bat
+		`python mssql_bruteforce.py -H  192.168.1.3 -v 1 -u sa admin username user name -pass 123 1234 12345 123456 pass password    -f ./payload.bat`
 
 
 * fingerprint module:
@@ -22,7 +22,7 @@ This project is divided to two modules:
 	info.py [-h] [-H HOST] Optional: [-p PORT] [-t TIMEOUT] [-i INSTANCE]
 
 	**Example**:
-		python info.py -H 192.168.1.3 
+		`python info.py -H 192.168.1.3`
 
 
 # Dependencies and Resources
