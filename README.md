@@ -13,7 +13,7 @@ This project is divided to two modules:
 	                         [USERS ...] -pass PASSWORDS [PASSWORDS ...] -f
 	                         PAYLOAD
 
-Example: 
+	Example: 
 		python mssql_bruteforce.py -H  192.168.1.3 -v 1 -u sa admin username user name -pass 123 1234 12345 123456 pass password    -f ./payload.bat
 
 
@@ -21,7 +21,7 @@ Example:
 		
 	info.py [-h] [-H HOST] Optional: [-p PORT] [-t TIMEOUT] [-i INSTANCE]
 
-Example:
+	Example:
 		python info.py -H 192.168.1.3 
 
 
